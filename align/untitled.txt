@@ -1,0 +1,14 @@
+Project 1 API
+
+Pairwise_Aligner
+should have functions shared to both algorithms 
+
+
+SmithWaterman
+inherits Pairwise Aligner and then adds new functionality
+
+
+NeedlemenWunsch
+inherits Pairwise Aligner and then adds new functionality
+
+
