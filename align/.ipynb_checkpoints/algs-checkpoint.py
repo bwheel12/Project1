@@ -2,13 +2,13 @@
 class PairwiseAligner():
     
     def __init__(self,sequence_1, sequence_2, scoring_matrix_name):
-        with open('./Project1-main/'+ sequence_1) as f:
+        with open(sequence_1) as f:
             lines = f.readlines()
         sequence_temp_1 = ""
         for i in range(1,len(lines)):
             sequence_temp_1 = sequence_temp_1 + lines[i][0:(lines[i].find('\n'))]
         
-        with open('./Project1-main/'+ sequence_2) as g:
+        with open(sequence_2) as g:
             lines_1 = g.readlines()
         sequence_temp_2 = ""
         for i in range(1,len(lines_1)):
