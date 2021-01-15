@@ -1,6 +1,7 @@
 
 class PairwiseAligner():
     
+    ##defines initialization conditions requires paths to two fasta sequences and the path to a scoring matrix
     def __init__(self,sequence_1, sequence_2, scoring_matrix_name):
         with open(sequence_1) as f:
             lines = f.readlines()
@@ -25,6 +26,7 @@ class PairwiseAligner():
         self.scoring_matrix = np.array([[int(scoring_matrix_temp[j,i]) for i in range(0,24)] for j in range(1,25)])
         self.scoring_lookup = scoring_matrix_temp[0,]
     
+    ##define the gap penalts within the affine gap frame work
     def set_gap_penalties(self,opened,extended):
         self.opened = opened
         self.extended = extended

@@ -16,12 +16,8 @@ def test_scoring_matrix_io(some_relevant_data):
     assert numpy.allclose(some_relevant_data.scoring_matrix,BLOSUM50_manual)
 
 def test_identical():
-    test_align_1 = algs.NeedlemanWunsch("sequences/prot-0004.fa","sequences/prot-0008.fa","scoring_matrices/BLOSUM50.mat")
-    test_align_2 = algs.SmithWaterman("sequences/prot-0004.fa","sequences/prot-0008.fa","scoring_matrices/BLOSUM50.mat")
-    test_align_1.sequence_1 = " YYYYY"
-    test_align_2.sequence_1 = " YYYYY"    
-    test_align_1.sequence_2 = " YYYYY"
-    test_align_2.sequence_2 = " YYYYY"
+    test_align_1 = algs.NeedlemanWunsch("sequences/prot-0004.fa","sequences/prot-0004.fa","scoring_matrices/BLOSUM50.mat")
+    test_align_2 = algs.SmithWaterman("sequences/prot-0004.fa","sequences/prot-0004.fa","scoring_matrices/BLOSUM50.mat")
     test_align_1.read_scoring_mat()
     test_align_1.set_gap_penalties(-11,-3)
     test_align_1.set_up_align_mats()
@@ -33,19 +29,15 @@ def test_identical():
     test_align_2.step_through()
     test_align_2.follow_back()
     
-    assert test_align_1.final_sequence_1 == "YYYYY"
-    assert test_align_1.final_sequence_2 == "YYYYY"
-    assert test_align_2.final_sequence_1 == "YYYYY"
-    assert test_align_2.final_sequence_2 == "YYYYY"
+    assert test_align_1.final_sequence_1 == "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
+    assert test_align_1.final_sequence_2 == "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
+    assert test_align_2.final_sequence_1 == "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
+    assert test_align_2.final_sequence_2 == "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
 
     
 def test_alignment_score():
-    test_align_1 = algs.NeedlemanWunsch("sequences/prot-0004.fa","sequences/prot-0008.fa","scoring_matrices/BLOSUM50.mat")
-    test_align_2 = algs.SmithWaterman("sequences/prot-0004.fa","sequences/prot-0008.fa","scoring_matrices/BLOSUM50.mat")
-    test_align_1.sequence_1 = " YYYYY"
-    test_align_2.sequence_1 = " YYYYY"    
-    test_align_1.sequence_2 = " YYYYY"
-    test_align_2.sequence_2 = " YYYYY"
+    test_align_1 = algs.NeedlemanWunsch("sequences/prot-0004.fa","sequences/prot-0004.fa","scoring_matrices/BLOSUM50.mat")
+    test_align_2 = algs.SmithWaterman("sequences/prot-0004.fa","sequences/prot-0004.fa","scoring_matrices/BLOSUM50.mat")
     test_align_1.read_scoring_mat()
     test_align_1.set_gap_penalties(-11,-3)
     test_align_1.set_up_align_mats()
@@ -58,5 +50,5 @@ def test_alignment_score():
     test_align_2.follow_back()
     
     
-    assert test_align_1.alignment_score == 8*5
-    assert test_align_2.alignment_score == 8*5
+    assert test_align_1.alignment_score == 937
+    assert test_align_2.alignment_score == 937
