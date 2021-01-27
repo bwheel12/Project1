@@ -134,7 +134,7 @@ for z in range(1,21):
         neg_align_seq = []
         neg_align_scr = []
         for j in range(len(pairs_neg)):
-                temp_align = algs.SmithWaterman(pairs_neg[j][0],pairs_neg[j][1],'scoring_matrices/BLOSUM50.mat')
+                temp_align = algs.SmithWaterman(pairs_neg[j][0],pairs_neg[j][1],'scoring_matrices/BLOSUM62.mat')
                 temp_align.read_scoring_mat()
                 temp_align.set_gap_penalties(-z,-zed)
                 temp_align.set_up_align_mats()
@@ -149,7 +149,7 @@ for z in range(1,21):
         pos_align_seq = []
         pos_align_scr = []
         for j in range(len(pairs_pos)):
-                temp_align = algs.SmithWaterman(pairs_pos[j][0],pairs_pos[j][1],'scoring_matrices/BLOSUM50.mat')
+                temp_align = algs.SmithWaterman(pairs_pos[j][0],pairs_pos[j][1],'scoring_matrices/BLOSUM62.mat')
                 temp_align.read_scoring_mat()
                 temp_align.set_gap_penalties(-z,-zed)
                 temp_align.set_up_align_mats()
