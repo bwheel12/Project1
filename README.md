@@ -1,7 +1,7 @@
 # Project 1 - Sequence Alignment Benjamin Wheeler
 ## Due 01/27/2021
 
-![BuildStatus](https://github.com/bwheel12/Project1/workflows/HW1/badge.svg?event=push)
+![BuildStatus](https://github.com/bwheel12/Project1/workflows/HW1/badge.svg?event=workflow_dispatch)
 
 In this assignment, you will implement two classical alignment algorithms and then evaluate each algorithm’s performance with a range of parameters. There are two parts to this assignment and Part 2 requires completion of Part 1. We recommend reading through both Part 1 and Part 2 before beginning this assignment. 
 
