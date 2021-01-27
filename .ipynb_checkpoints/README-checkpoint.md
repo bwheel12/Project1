@@ -1,4 +1,4 @@
-# Project 1 - Sequence Alignment
+# Project 1 - Sequence Alignment Benjamin Wheeler
 ## Due 01/27/2021
 
 ![BuildStatus](https://github.com/bwheel12/Project1/workflows/HW1/badge.svg?event=push)
@@ -21,8 +21,19 @@ python -m pytest
 ```
 from the root directory of this project.
 
+## To align two given sequences the workflow is as follows
+```
+from align import algs
+temp_align = algs.SmithWaterman('sequence_1_location.txt','sequence_2_location.txt','scoring_matrix_location.mat')
+temp_align.read_scoring_mat()
+temp_align.set_gap_penalties(-11,-3)
+temp_align.set_up_align_mats()
+temp_align.step_through()
+temp_align.follow_back()
+```
 
-### Main Contents
+
+## Main Contents
 
 The main file contains all the lines of code to run the exercises in part two of the assignment. When single values were requested the are generally printed to the terminal. Matrices and graphs generated are then saved to the main directory of the project. 
 
@@ -36,7 +47,7 @@ To align two sequences, either a smith-waterman or NeedlemanWunsch object must b
 This function does not take any arguments and simply instructs the software to import the actual values from the scoring matrix file. No argument is given.
 
 ### set_gap_penalties
-This function is used to set the gap opening and extension penalties to be used. These values are not provided at initilization, because the intent is that the same pair of sequences would possibly be run with multiple gap penalties. This allows gap penalties to be reset quickly and the alignement rerun with out the need to load the sequences again. This function takes two integer arguments. The first is presumed to be the gap opening penalty and the second is the gap extension penalty. 
+This function is used to set the gap opening and extension penalties to be used. These values are not provided at initilization, because the intent is that the same pair of sequences would possibly be run with multiple gap penalties. This allows gap penalties to be reset quickly and the alignement rerun with out the need to load the sequences again. This function takes two integer arguments. The first is presumed to be the gap opening penalty and the second is the gap extension penalty. These values should be negative.
 
 ### set_up_alignment_mats
 This function creates the initial empty matrices for the alignment process. Should be called by the user before and inbetween alignment runs. No argument is given.
@@ -44,4 +55,23 @@ This function creates the initial empty matrices for the alignment process. Shou
 ### check_score_mat
 This function looks up the score for a given amino acid pair from the provided score matrix and returns that score. The amino acid pair to be score should each be provided as individual character arguments. While possibe, this is not intended for the user to call. This will be used internally by the step_through function
 
-##
+## SmithWaterman Class and its private functions
+This class is a child of the parent PairwiseAligner class. It inherits all the functions above and implements two functions of its own. These fucntions deal with the actual alignment implementation and save the results to atributes within the SmithWaterman object. These alignments are designed for local alignment using the SmithWaterman algorithm.
+
+### step_through
+This function interates through the alignment matrices determining the appropriate score and path according to the SmithWaterman algorithm. The function should be called by the user with no arguments passed. The function will update the alignment matrices as atributes of the alignment object. 
+
+### follow_back
+This function finds the optimal alignment within the score matrix. It then follows it back to yield the appropriate, locally aligned sequences these are assigned to sequence_1 and sequence_2 atrributes of the SmithWaterman Object. It further assigns the score to the alignment_score attribute of the SmithWaterman object. The user should call this function with no arguments.
+
+## NeedlemanWunsch Class and its private functions
+This class is a child of the parent PairwiseAligner class. It inherits all the functions above and implements its own versions of step_through and follow_back. These functions deal with the actual alignment implementation and save the results to attributes within the NeedlemanWunsch object. These alignments are desigend for global alignment using the NeedlemanWunsch algorithm.
+
+### step_through
+This function interates through the alignment matrices determining the appropriate score and path according to the NeedlemanWunsch algorithm. The function should be called by the user with no arguments passed. The function will update the alignment matrices as atributes of the alignment object. 
+
+### follow_back
+This function finds the optimal alignment within the score matrix. It then follows it back to yield the appropriate, globally aligned sequences these are assigned to sequence_1 and sequence_2 atrributes of the NeedlemanWunsch Object. It further assigns the score to the alignment_score attribute of the NeedlemanWunsch object. The user should call this function with no arguments.
+
+## Dependencies
+These sets of code depend on the following packages: numpy, matplotlib, pandas, math
