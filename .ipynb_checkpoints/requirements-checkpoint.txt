@@ -1,5 +1,5 @@
 pytest>=3.0
 numpy>=1.11.2
 matplotlib>=3.3.3
-pandas>=1.2.0
+pandas>=1.1.0
 math>1.1.0
